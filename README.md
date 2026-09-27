@@ -256,10 +256,6 @@ A table change is the exception: agreed first, rebuilt after Nielsen's loads fin
 
 - **2.13 dayparts 8P-12A / 12A-6A**: mirror airings and the midnight straddle; the population was sent to Jill. Jill to confirm the repeats-only daypart norm.
 - **Mini-series flag** for the premiere norm exclusion: no column identifies one yet.
-- **`IS_PREMIERE_CT_SOURCE`**: what Cable Tracks' own flag is meant to say (Adarsh).
-- **Season variants A and B** (`13B` merged into `13` or kept apart): B is in production; A is documented and kept alive until A&E decides.
-- **Manual per-programme overrides** in A&E's sheets are not reproducible by rule and are listed in each notebook's "Still open" cell.
-- **Nielsen month mapping** lives in the planner, not the SQL, and needs A&E's calendar loaded.
 
 ---
 
