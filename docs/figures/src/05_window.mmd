@@ -1,0 +1,19 @@
+flowchart TB
+  P["p_win_to<br/>(NULL or a date, possibly from the planner)"]
+  L[("CRIS_LATEST_DATE<br/>LATEST_FULL_SUNDAY<br/>for the network and stream")]
+  C["data_sun = LATEST_FULL_SUNDAY"]
+  W["win_to = LEAST( COALESCE(p_win_to, data_sun), data_sun )<br/><b>[CAP-SUN]</b> never past the data"]
+  F["win_from = COALESCE( p_win_from,<br/>win_to − 12 months + 1 day )<br/><b>[NORM12]</b>"]
+  N["norm_to = COALESCE(p_norm_to, win_to)<br/>norm_from = COALESCE(p_norm_from, win_from)"]
+  S["Season-scoped queries (2.4, 2.9, 2.11, 2.12):<br/>the season is bounded by identity (CT_SEASON),<br/>the only date cap is win_to"]
+  O["Output: FROM_DATE · TO_DATE · NORM_FROM · NORM_TO"]
+  E["Example, Aya item 5: planner sent 2026-09-27,<br/>data ends Sunday 2026-09-20 → TO_DATE = 2026-09-20"]
+  P --> W
+  L --> C --> W
+  W --> F --> N --> O
+  W --> S --> O
+  W -.-> E
+  classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class E note
+  classDef key fill:#EAF6EE,stroke:#3E8E5A,color:#1B2A3A
+  class W key

@@ -1,0 +1,48 @@
+flowchart LR
+  subgraph N[Nielsen]
+    direction TB
+    P[MIT Panel<br/>to 2025-09-28]
+    B[MIT Big Data<br/>from 2025-09-29]
+  end
+  subgraph U["AUDIENCE_DB.UBD  (read only)"]
+    direction TB
+    V1[VW_TOTAL_PROGRAM_*_UNIFIED]
+    V2[VW_HALFHR_*_UNIFIED]
+    V3[VW_QTRHR_*_UNIFIED]
+    V4[VW_UNIVERSE_*_UNIFIED]
+  end
+  subgraph C["AUDIENCE_DEV_DB.CRIS  (prepared tables)"]
+    direction TB
+    T1[(CRIS_TELECAST_FACT)]
+    T2[(CRIS_HALFHR_FACT)]
+    T3[(CRIS_QH_FACT)]
+    T0[(CRIS_LATEST_DATE)]
+    T4[(CRIS_NETWORK_UNIVERSE)]
+    T5[(CRIS_FY_CALENDAR)]
+  end
+  subgraph Q["22 queries  (SQL with a SET block)"]
+    direction TB
+    S1[Section 1<br/>Overnights · 6]
+    S2[Section 2<br/>Series performance · 12]
+    S3[Section 3<br/>Competitive rankers · 4]
+  end
+  subgraph K[CRISpy planner]
+    direction TB
+    R[route → parameters → render]
+  end
+  UI[CRIS UI<br/>A&E users]
+  P --> U
+  B --> U
+  V1 --> T1
+  V2 --> T2
+  V3 --> T3
+  T1 & T2 & T3 --> T0
+  T2 --> T4
+  V4 -.-> T4
+  C --> Q
+  Q --> K
+  K --> UI
+  UI -. question .-> K
+  classDef store fill:#EEF3F8,stroke:#5B7A99,color:#1B2A3A
+  classDef ui fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class UI ui

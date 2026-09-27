@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="420" viewBox="0 0 1500 420" font-family="Helvetica, Arial, sans-serif">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="42" font-size="24" font-weight="bold" fill="#1B2A3A">2.10 · How the lead-in is found</text>
+<text x="40" y="68" font-size="14" fill="#5B7A99">One night on HIST. The premiere block starts at 9:00p; the lead-in is the programme that ends within p_adjacent_min (5) of the block start, whatever it is.</text>
+<line x1="80" y1="230" x2="1420" y2="230" stroke="#1B2A3A" stroke-width="2"/>
+<line x1="80.0" y1="222" x2="80.0" y2="238" stroke="#1B2A3A"/><text x="80.0" y="258" font-size="13" text-anchor="middle">7:00p</text>
+<line x1="526.6666666666666" y1="222" x2="526.6666666666666" y2="238" stroke="#1B2A3A"/><text x="526.6666666666666" y="258" font-size="13" text-anchor="middle">8:00p</text>
+<line x1="973.3333333333333" y1="222" x2="973.3333333333333" y2="238" stroke="#1B2A3A"/><text x="973.3333333333333" y="258" font-size="13" text-anchor="middle">9:00p</text>
+<line x1="1420.0" y1="222" x2="1420.0" y2="238" stroke="#1B2A3A"/><text x="1420.0" y="258" font-size="13" text-anchor="middle">10:00p</text>
+<rect x="80.0" y="170" width="446.66666666666663" height="44" rx="5" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="90.0" y="197" font-size="13" fill="#1B2A3A">Repeat · Skinwalker ep. 4  (7:00–8:00p)</text>
+<rect x="526.6666666666666" y="170" width="431.7777777777778" height="44" rx="5" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="536.6666666666666" y="197" font-size="13" fill="#1B2A3A">Repeat · Skinwalker ep. 5  (8:00–8:58p)</text>
+<rect x="958.4444444444445" y="170" width="14.8888888888888" height="44" rx="5" fill="#FFF4DC" stroke="#C79A2B"/>
+<rect x="973.3333333333333" y="170" width="446.66666666666674" height="44" rx="5" fill="#EAF6EE" stroke="#3E8E5A"/>
+<text x="983.3333333333333" y="197" font-size="13" fill="#1B2A3A">PREMIERE · Skinwalker ep. 6  (9:00–10:00p) · the block</text>
+<text x="958.4444444444445" y="156" font-size="12" fill="#8A6A1A" text-anchor="middle">2-min short, carved out (SHORT_DURATION_IND)</text>
+<path d="M 958.4444444444445 162 L 965.8888888888889 170" stroke="#C79A2B" fill="none"/>
+<path d="M 958.4444444444445 290 C 958.4444444444445 320, 973.3333333333333 320, 973.3333333333333 290" stroke="#B25C5C" stroke-width="2" fill="none"/>
+<text x="965.8888888888889" y="340" font-size="13" text-anchor="middle" fill="#B25C5C">gap 2 min ≤ p_adjacent_min 5 → ep. 5 is the lead-in (LEADIN_AIRING = REPEAT)</text>
+<text x="40" y="385" font-size="13" fill="#1B2A3A">Before v72 the join required the lead-in to end at the exact second the block starts, so these nights came back NO LEAD-IN. The lead-in must run p_min_leadin_min (15) or more; the night's own first runs are never their own lead-in.</text>
+<text x="40" y="408" font-size="13" fill="#1B2A3A">Output per night: LEADIN_PROGRAM · LEADIN_AIRING (PREMIERE / REPEAT / NO LEAD-IN) · LEADIN_AA_000 · PREMIERE_AA_000 · PCT_VS_LEADIN. p_rollup = TRUE gives one row per lead-in programme.</text>
+</svg>

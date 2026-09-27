@@ -1,0 +1,15 @@
+flowchart LR
+  A["Edit the SQL<br/>crispy/app/sql/qNN_*.sql<br/>(neutral defaults, tagged comments)"]
+  B["Regenerate<br/>notebooks (comments stripped,<br/>A&E case in the SET block)<br/>+ Word docs (production defaults)"]
+  C["Run the benchmark<br/>32 A&E questions as CRISpy renders them<br/>expected vs obtained"]
+  D{"All validated<br/>figures still<br/>match?"}
+  E["Bump the version<br/>tables · notebooks · docs · crispy<br/>all carry the same vNN"]
+  G["Hand over<br/>repo + doc of the files to load<br/>CRIS swaps the SQL, one copy per query"]
+  H["Rerun the UI test log<br/>32 cases in the CRIS UI"]
+  A --> B --> C --> D
+  D -- yes --> E --> G --> H
+  D -- no --> A
+  T["Table change?<br/>Only with agreement first.<br/>Rebuild after Nielsen loads finish,<br/>then the uniqueness checks."]
+  E -.-> T
+  classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class T note

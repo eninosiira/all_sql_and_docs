@@ -1,0 +1,41 @@
+flowchart LR
+  subgraph PN["Prime norm  · 2.1, 2.5, 2.6"]
+    direction TB
+    p1["CRIS_HALFHR_FACT"]
+    p2["Network, stream, latest 12 months<br/>to the last full Sunday"]
+    p3["8:00p – 11:00p  (2000–2300)"]
+    p4["All programming, weighted by HH_MIN"]
+    p1 --> p2 --> p3 --> p4
+  end
+  subgraph EN["Premiere norm  · 2.2, 2.7"]
+    direction TB
+    e1["CRIS_HALFHR_FACT (2.2)<br/>CRIS_TELECAST_FACT (2.7)"]
+    e2["Network, stream, latest 12 months"]
+    e3["8:00p – 12:00a  (2000–2400)"]
+    e4["First runs only · no specials · no movies<br/>HIST: no Curse of Oak Island"]
+    e5["HIST validated: 393 telecasts / 32 series"]
+    e1 --> e2 --> e3 --> e4 --> e5
+  end
+  subgraph QN["Quarter-hour norm  · 2.11"]
+    direction TB
+    q1["CRIS_QH_FACT"]
+    q2["p_norm_basis = TIME_PERIOD (default)<br/>every first run starting in the same half hour<br/>with the same number of quarter hours, position by position"]
+    q3["p_norm_basis = SEASON<br/>the series' other telecasts, leave-one-out"]
+    q1 --> q2
+    q1 --> q3
+  end
+  subgraph DN["Daypart norm  · 2.13"]
+    direction TB
+    d1["CRIS_HALFHR_FACT"]
+    d2["A&E's 8-daypart repeat grid<br/>M-SU 8P-12A · 12A-6A · M-F / SAT-SUN blocks"]
+    d3["p_norm_basis = REPEATS (default)<br/>repeat half hours only → Jill's 128"]
+    d4["p_norm_basis = ALL<br/>premieres + repeats → 164"]
+    d1 --> d2 --> d3
+    d2 --> d4
+  end
+  R["Every norm is duration weighted:<br/>SUM(demo × minutes) / SUM(minutes)"]
+  PN ~~~ EN ~~~ QN ~~~ DN
+  classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class R,e5 note
+  classDef key fill:#EAF6EE,stroke:#3E8E5A,color:#1B2A3A
+  class d3,q2 key

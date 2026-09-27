@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="926" viewBox="0 0 1500 926" font-family="Helvetica, Arial, sans-serif">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="42" font-size="24" font-weight="bold" fill="#1B2A3A">The 22 queries and the tables each one reads</text>
+<text x="40" y="68" font-size="14" fill="#5B7A99">Every query also reads CRIS_LATEST_DATE for its window end (3.1 excepted: it has no default window).</text>
+<rect x="40" y="80" width="440" height="398" rx="10" fill="#FAFBFC" stroke="#C9D3DD"/>
+<text x="56" y="104" font-size="16" font-weight="bold" fill="#1B2A3A">Section 1 · Overnight summary</text>
+<rect x="52" y="126" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="64" y="146" font-size="15" font-weight="bold" fill="#1B2A3A">1.1</text>
+<text x="112" y="146" font-size="14" fill="#1B2A3A">Premieres vs season norms</text>
+<rect x="112" y="153" width="22" height="16" rx="3" fill="#5B7A99"/><text x="123" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="139" y="153" width="22" height="16" rx="3" fill="#B25C5C"/><text x="150" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="52" y="184" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="64" y="204" font-size="15" font-weight="bold" fill="#1B2A3A">1.2</text>
+<text x="112" y="204" font-size="14" fill="#1B2A3A">Quarter-hour movement</text>
+<rect x="112" y="211" width="22" height="16" rx="3" fill="#8E5BA6"/><text x="123" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Q</text>
+<rect x="52" y="242" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="64" y="262" font-size="15" font-weight="bold" fill="#1B2A3A">1.3</text>
+<text x="112" y="262" font-size="14" fill="#1B2A3A">Lifetime movie retention norm</text>
+<rect x="112" y="269" width="22" height="16" rx="3" fill="#5B7A99"/><text x="123" y="281" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="52" y="300" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="64" y="320" font-size="15" font-weight="bold" fill="#1B2A3A">1.3b</text>
+<text x="112" y="320" font-size="14" fill="#1B2A3A">Lead-in retention vs season norm</text>
+<rect x="112" y="327" width="22" height="16" rx="3" fill="#5B7A99"/><text x="123" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="52" y="358" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="64" y="378" font-size="15" font-weight="bold" fill="#1B2A3A">1.4</text>
+<text x="112" y="378" font-size="14" fill="#1B2A3A">Network daypart rollup</text>
+<rect x="112" y="385" width="22" height="16" rx="3" fill="#8E5BA6"/><text x="123" y="397" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Q</text>
+<rect x="52" y="416" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="64" y="436" font-size="15" font-weight="bold" fill="#1B2A3A">1.5</text>
+<text x="112" y="436" font-size="14" fill="#1B2A3A">Additional programme data</text>
+<rect x="112" y="443" width="22" height="16" rx="3" fill="#5B7A99"/><text x="123" y="455" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="520" y="80" width="440" height="746" rx="10" fill="#FAFBFC" stroke="#C9D3DD"/>
+<text x="536" y="104" font-size="16" font-weight="bold" fill="#1B2A3A">Section 2 · Series performance</text>
+<rect x="532" y="126" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="146" font-size="15" font-weight="bold" fill="#1B2A3A">2.1</text>
+<text x="592" y="146" font-size="14" fill="#1B2A3A">Premiere vs prime norm</text>
+<rect x="592" y="153" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="153" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="630" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="646" y="153" width="22" height="16" rx="3" fill="#B25C5C"/><text x="657" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="532" y="184" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="204" font-size="15" font-weight="bold" fill="#1B2A3A">2.2</text>
+<text x="592" y="204" font-size="14" fill="#1B2A3A">Premiere vs premiere norm</text>
+<rect x="592" y="211" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="211" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="630" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="646" y="211" width="22" height="16" rx="3" fill="#B25C5C"/><text x="657" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="532" y="242" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="262" font-size="15" font-weight="bold" fill="#1B2A3A">2.4</text>
+<text x="592" y="262" font-size="14" fill="#1B2A3A">Vs prior season</text>
+<rect x="592" y="269" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="281" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="532" y="300" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="320" font-size="15" font-weight="bold" fill="#1B2A3A">2.5</text>
+<text x="592" y="320" font-size="14" fill="#1B2A3A">Median age</text>
+<rect x="592" y="327" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="327" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="630" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="646" y="327" width="22" height="16" rx="3" fill="#B25C5C"/><text x="657" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="532" y="358" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="378" font-size="15" font-weight="bold" fill="#1B2A3A">2.6</text>
+<text x="592" y="378" font-size="14" fill="#1B2A3A">M/F skew</text>
+<rect x="592" y="385" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="397" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="385" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="630" y="397" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="646" y="385" width="22" height="16" rx="3" fill="#B25C5C"/><text x="657" y="397" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="532" y="416" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="436" font-size="15" font-weight="bold" fill="#1B2A3A">2.7</text>
+<text x="592" y="436" font-size="14" fill="#1B2A3A">Live+3 lift</text>
+<rect x="592" y="443" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="455" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="532" y="474" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="494" font-size="15" font-weight="bold" fill="#1B2A3A">2.8</text>
+<text x="592" y="494" font-size="14" fill="#1B2A3A">Rank among premieres</text>
+<rect x="592" y="501" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="513" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="532" y="532" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="552" font-size="15" font-weight="bold" fill="#1B2A3A">2.9</text>
+<text x="592" y="552" font-size="14" fill="#1B2A3A">Network rank, time period</text>
+<rect x="592" y="559" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="571" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="559" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="630" y="571" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="646" y="559" width="22" height="16" rx="3" fill="#C79A2B"/><text x="657" y="571" font-size="11" font-weight="bold" fill="white" text-anchor="middle">U</text>
+<rect x="532" y="590" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="610" font-size="15" font-weight="bold" fill="#1B2A3A">2.10</text>
+<text x="592" y="610" font-size="14" fill="#1B2A3A">Vs lead-in</text>
+<rect x="592" y="617" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="629" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="617" width="22" height="16" rx="3" fill="#B25C5C"/><text x="630" y="629" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="532" y="648" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="668" font-size="15" font-weight="bold" fill="#1B2A3A">2.11</text>
+<text x="592" y="668" font-size="14" fill="#1B2A3A">Quarter hour</text>
+<rect x="592" y="675" width="22" height="16" rx="3" fill="#8E5BA6"/><text x="603" y="687" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Q</text>
+<rect x="532" y="706" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="726" font-size="15" font-weight="bold" fill="#1B2A3A">2.12</text>
+<text x="592" y="726" font-size="14" fill="#1B2A3A">Telecast level</text>
+<rect x="592" y="733" width="22" height="16" rx="3" fill="#5B7A99"/><text x="603" y="745" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="619" y="733" width="22" height="16" rx="3" fill="#B25C5C"/><text x="630" y="745" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="532" y="764" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="544" y="784" font-size="15" font-weight="bold" fill="#1B2A3A">2.13</text>
+<text x="592" y="784" font-size="14" fill="#1B2A3A">Repeats vs daypart</text>
+<rect x="592" y="791" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="603" y="803" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="1000" y="80" width="440" height="282" rx="10" fill="#FAFBFC" stroke="#C9D3DD"/>
+<text x="1016" y="104" font-size="16" font-weight="bold" fill="#1B2A3A">Section 3 · Competitive rankers</text>
+<rect x="1012" y="126" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="1024" y="146" font-size="15" font-weight="bold" fill="#1B2A3A">3.1</text>
+<text x="1072" y="146" font-size="14" fill="#1B2A3A">Series rank, network time period</text>
+<rect x="1072" y="153" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="1083" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="1099" y="153" width="22" height="16" rx="3" fill="#C79A2B"/><text x="1110" y="165" font-size="11" font-weight="bold" fill="white" text-anchor="middle">U</text>
+<rect x="1012" y="184" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="1024" y="204" font-size="15" font-weight="bold" fill="#1B2A3A">3.2</text>
+<text x="1072" y="204" font-size="14" fill="#1B2A3A">Network ranks by daypart</text>
+<rect x="1072" y="211" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="1083" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="1099" y="211" width="22" height="16" rx="3" fill="#C79A2B"/><text x="1110" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">U</text>
+<rect x="1126" y="211" width="22" height="16" rx="3" fill="#B25C5C"/><text x="1137" y="223" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="1012" y="242" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="1024" y="262" font-size="15" font-weight="bold" fill="#1B2A3A">3.3</text>
+<text x="1072" y="262" font-size="14" fill="#1B2A3A">Series genre ranker</text>
+<rect x="1072" y="269" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="1083" y="281" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="1099" y="269" width="22" height="16" rx="3" fill="#C79A2B"/><text x="1110" y="281" font-size="11" font-weight="bold" fill="white" text-anchor="middle">U</text>
+<rect x="1126" y="269" width="22" height="16" rx="3" fill="#B25C5C"/><text x="1137" y="281" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<rect x="1012" y="300" width="416" height="48" rx="6" fill="#EEF3F8" stroke="#5B7A99"/>
+<text x="1024" y="320" font-size="15" font-weight="bold" fill="#1B2A3A">3.4</text>
+<text x="1072" y="320" font-size="14" fill="#1B2A3A">Telecast ranker</text>
+<rect x="1072" y="327" width="22" height="16" rx="3" fill="#5B7A99"/><text x="1083" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text>
+<rect x="1099" y="327" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="1110" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text>
+<rect x="1126" y="327" width="22" height="16" rx="3" fill="#C79A2B"/><text x="1137" y="339" font-size="11" font-weight="bold" fill="white" text-anchor="middle">U</text>
+<rect x="40" y="886" width="22" height="16" rx="3" fill="#5B7A99"/><text x="51" y="898" font-size="11" font-weight="bold" fill="white" text-anchor="middle">T</text><text x="70" y="899" font-size="13" fill="#1B2A3A">CRIS_TELECAST_FACT</text>
+<rect x="280" y="886" width="22" height="16" rx="3" fill="#3E8E5A"/><text x="291" y="898" font-size="11" font-weight="bold" fill="white" text-anchor="middle">H</text><text x="310" y="899" font-size="13" fill="#1B2A3A">CRIS_HALFHR_FACT</text>
+<rect x="520" y="886" width="22" height="16" rx="3" fill="#8E5BA6"/><text x="531" y="898" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Q</text><text x="550" y="899" font-size="13" fill="#1B2A3A">CRIS_QH_FACT</text>
+<rect x="760" y="886" width="22" height="16" rx="3" fill="#C79A2B"/><text x="771" y="898" font-size="11" font-weight="bold" fill="white" text-anchor="middle">U</text><text x="790" y="899" font-size="13" fill="#1B2A3A">CRIS_NETWORK_UNIVERSE</text>
+<rect x="1000" y="886" width="22" height="16" rx="3" fill="#B25C5C"/><text x="1011" y="898" font-size="11" font-weight="bold" fill="white" text-anchor="middle">F</text><text x="1030" y="899" font-size="13" fill="#1B2A3A">CRIS_FY_CALENDAR</text>
+</svg>

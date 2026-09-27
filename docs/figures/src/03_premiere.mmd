@@ -1,0 +1,28 @@
+flowchart TB
+  T["One telecast row<br/>(Nielsen + Cable Tracks joined)"]
+  Q1{"Nielsen<br/>REPEAT_IND = 0 ?"}
+  FR["IS_FIRST_RUN_CT = TRUE<br/><i>episode premiere</i>"]
+  RP["IS_FIRST_RUN_CT = FALSE<br/><i>repeat</i>"]
+  Q2{"CT_SEASON present<br/>and this is the earliest<br/>first-run telecast<br/>of that season ?"}
+  SP["IS_PREMIERE_CT = 1<br/><i>season premiere</i>"]
+  NS["IS_PREMIERE_CT = 0"]
+  CT["IS_FIRST_RUN_CABLE_TRACKS<br/>= CT_SEASON IS NOT NULL<br/><i>kept for comparison only</i>"]
+  SRC["IS_PREMIERE_CT_SOURCE<br/><i>Cable Tracks' own flag, reads 1 on every first run;<br/>kept, not used — question open with Adarsh</i>"]
+  T --> Q1
+  Q1 -- yes --> FR
+  Q1 -- no --> RP
+  FR --> Q2
+  Q2 -- yes --> SP
+  Q2 -- no --> NS
+  T -.-> CT
+  T -.-> SRC
+  U1["Used by: every query that says 'first run' or 'premiere'<br/>2.1 · 2.2 · 2.7 · 2.8 · 2.9 · 2.11 · 2.12 · 3.x · 1.1"]
+  U2["Used by: p_premiere_only on 2.1, 2.2, 2.12<br/>(the season-premiere episode, one telecast)"]
+  FR --- U1
+  SP --- U2
+  classDef yes fill:#EAF6EE,stroke:#3E8E5A,color:#1B2A3A
+  classDef no fill:#F6ECEC,stroke:#B25C5C,color:#1B2A3A
+  classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class FR,SP yes
+  class RP,NS no
+  class CT,SRC,U1,U2 note

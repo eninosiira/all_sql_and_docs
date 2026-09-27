@@ -1,0 +1,34 @@
+flowchart TB
+  subgraph src[Source views]
+    direction LR
+    A1[VW_TOTAL_PROGRAM]
+    A2[VW_HALFHR]
+    A3[VW_QTRHR]
+    A4["Dim_DATE (A&E)"]
+  end
+  subgraph baked["Baked into every fact table"]
+    direction LR
+    F1["PROGRAM_PUT_INDICATOR = 0<br/>TOTAL_PROGRAM_IND = '00'"]
+    F2["VIEWING_TYPE dedup<br/>(Panel can carry 2 rows per telecast)"]
+    F3["BCAST_START_MIN / BCAST_END_MIN<br/>anchored at 6:00a"]
+    F4["Classifications as columns:<br/>CONTENT_TYPE · IS_HOLIDAY · DEMO_AA<br/>IS_FIRST_RUN_CT · IS_PREMIERE_CT"]
+  end
+  T1[("[S1-T1]  CRIS_TELECAST_FACT<br/>network × date × programme × telecast × stream<br/>all history")]
+  T2[("[S2-T1]  CRIS_HALFHR_FACT<br/>+ HALFHR_START_TIME<br/>last 3 years")]
+  T3[("[S1-T2]  CRIS_QH_FACT<br/>+ QUARTER_HOUR_START_TIME")]
+  T0[("[S1-T0]  CRIS_LATEST_DATE<br/>network × stream<br/>LATEST_BROADCAST_DATE · LATEST_QH_BROADCAST_DATE<br/>LATEST_FULL_SUNDAY · REFRESHED_AT")]
+  T4[("[S3-T0]  CRIS_NETWORK_UNIVERSE<br/>network<br/>IS_ENT_BY_CODE · IS_ENT_BY_NAME · IS_AE_NETWORK")]
+  T5[("[S3-T1]  CRIS_FY_CALENDAR<br/>fiscal year<br/>FY_START = last Monday of September")]
+  NOT["Never filtered in a table:<br/>REPEAT_IND · MOVIE_IND · IS_SPECIAL · SHORT_DURATION_IND<br/>They stay as columns so 2.10 can see a repeat as a lead-in"]
+  A1 --> T1
+  A2 --> T2
+  A3 --> T3
+  A4 --> T5
+  baked -.-> T1 & T2 & T3
+  T1 & T2 & T3 --> T0
+  T2 --> T4
+  T1 ~~~ NOT
+  classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class NOT note
+  classDef bk fill:#EAF6EE,stroke:#3E8E5A,color:#1B2A3A
+  class F1,F2,F3,F4 bk

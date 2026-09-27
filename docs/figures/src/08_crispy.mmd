@@ -1,0 +1,17 @@
+flowchart LR
+  Q["Question<br/>'How did Skinwalker's premiere<br/>do vs the HIST premiere norm?'"]
+  I{"Intent<br/>is this a ratings<br/>question?"}
+  X["Extractor<br/>network · programme · season · demo<br/>dates · stream · flags<br/>(is_season_premiere_question,<br/>is_season_qh_question,<br/>is_series_leadin_question …)"]
+  R["Router<br/>which of the 22 queries<br/>(rules first, LLM second)"]
+  P["Pins<br/>flag → parameter<br/>p_premiere_only · p_rollup · p_norm_basis …"]
+  N["Renderer<br/>rewrites the SET block<br/>of the query file<br/>never writes SQL"]
+  S[("Snowflake<br/>CRIS tables")]
+  A["Answer<br/>rows + every parameter used<br/>+ DEMO_USED, FROM_DATE, TO_DATE"]
+  F["Fan-out<br/>one question → several queries<br/>(e.g. SP_7: 2.1 + 2.2 + 2.7)"]
+  NO["Not a ratings question →<br/>answered without SQL"]
+  Q --> I
+  I -- yes --> X --> R --> P --> N --> S --> A
+  I -- no --> NO
+  R -.-> F -.-> P
+  classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
+  class F,NO note
