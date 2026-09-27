@@ -1,0 +1,13 @@
+services:
+  crispy:
+    build: .
+    image: crispy:latest
+    container_name: crispy
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      # SQL templates are read at request time, so edits land without a rebuild
+      - ./app/sql:/srv/app/sql:ro

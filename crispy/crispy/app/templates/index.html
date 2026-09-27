@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRISpy &#183; CRIS query planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <div class="brand">
+      <span class="tally" aria-hidden="true"></span>
+      <span class="brand-name">CRISpy</span>
+      <!-- The mark. CRISpy is a working name that stuck, and this is the only
+           thing on the page not trying to be serious, which suits a tool whose
+           whole job is making the serious part checkable.
+           Sized to sit above the wordmark rather than beside it as a footnote:
+           it reads as the logo, not as an emoji after the text. -->
+      <img class="brand-mark" src="/static/crispy-logo.png"
+           srcset="/static/crispy-logo.png 1x, /static/crispy-logo@2x.png 2x"
+           alt="" aria-hidden="true" width="128" height="128">
+      <span class="brand-sub">Sections 1&#8211;3 &#183; query planner</span>
+    </div>
+    <button class="ghost" id="about-toggle" aria-expanded="false" aria-controls="about">
+      What it covers
+    </button>
+  </div>
+</header>
+
+<section class="about wrap" id="about" hidden>
+  <p class="about-lede">
+    CRISpy turns a question into a parameterised CRIS query. It does not run the
+    query and it does not write new SQL — every template below was authored and
+    validated in the CRIS notebooks. The planner only chooses which one and
+    what to point it at.
+  </p>
+  <ol class="specs">
+    {% for s in specs %}
+    <li>
+      <span class="spec-id">{{ s.id }}</span>
+      <span class="spec-title">{{ s.title }}</span>
+      <span class="spec-answers">{{ s.answers }}</span>
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="about-foot">
+    Networks: {% for code, m in networks.items() %}<code>{{ code }}</code> {{ m.name }}{% if not loop.last %} · {% endif %}{% endfor %}
+  </p>
+</section>
+
+<main class="wrap" id="thread">
+  <div class="opener" id="opener">
+    <h1>What do you need from last night?</h1>
+    <p>
+      Name the network and CRISpy fills in the rest. The date defaults to the most
+      recent night with data, the demo to whatever that network reports on, and the
+      stream to Live+SD.
+    </p>
+    <p class="tests-link">
+      <a href="/tests">Run A&amp;E's seventeen validation questions</a>
+    </p>
+
+    <ul class="samples">
+      {% for s in samples %}
+      <li><button class="sample" data-q="{{ s }}">{{ s }}</button></li>
+      {% endfor %}
+    </ul>
+  </div>
+</main>
+
+<form class="composer" id="composer" autocomplete="off">
+  <div class="wrap">
+   <div class="composer-in">
+    <label class="sr-only" for="q">Your question</label>
+    <textarea id="q" rows="1" placeholder="How did History do last night?"></textarea>
+    <button type="submit" id="send" aria-label="Plan the query">
+      <span class="send-label">Plan</span>
+    </button>
+   </div>
+  </div>
+</form>
+
+<template id="tpl-user">
+  <article class="turn turn-user">
+    <div class="turn-mark">You</div>
+    <div class="turn-body"></div>
+  </article>
+</template>
+
+<template id="tpl-crispy">
+  <article class="turn turn-crispy">
+    <div class="turn-mark">CRISpy</div>
+    <div class="turn-body"></div>
+  </article>
+</template>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
