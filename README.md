@@ -4,7 +4,7 @@ The SQL behind **CRIS**, A&E Networks' ratings assistant: the Snowflake tables i
 
 Everything runs on Snowflake against `AUDIENCE_DB.UBD` (Nielsen, read only) and writes to `AUDIENCE_DEV_DB.CRIS`.
 
-**Current release: v74** (27 September 2026). Every file in a release carries the same version number: if the tables say v74, the queries, the docs and the planner say v74.
+**Current release: v77** (30 September 2026). Every file in a release carries the same version number: if the tables say v74, the queries, the docs and the planner say v74.
 
 ---
 
@@ -21,8 +21,9 @@ Everything runs on Snowflake against `AUDIENCE_DB.UBD` (Nielsen, read only) and 
 9. [CRISpy, the planner](#9-crispy-the-planner)
 10. [The benchmark and the UI test log](#10-the-benchmark-and-the-ui-test-log)
 11. [Shipping a change](#11-shipping-a-change)
-12. [What changed lately](#12-what-changed-lately)
-13. [Still open](#13-still-open)
+12. [The nightly refresh](#12-the-nightly-refresh)
+13. [What changed lately](#13-what-changed-lately)
+14. [Still open](#14-still-open)
 
 ---
 
@@ -38,19 +39,29 @@ The reason for the prepared tables is a firm decision from the weekly check-in: 
 
 ## 2. What is in the repo
 
+One folder per release. Everything a release needs is inside its folder, with the same version number on every file; older releases stay as they were shipped.
+
 ```
-tables/      CRIS_Tables_vNN.ipynb                builds the six prepared tables, in order, with checks
-queries/     CRIS_SectionN_Queries_vNN.ipynb      the 22 queries, one cell each, set to an A&E case
-             CRIS_SectionN_Queries_vNN.docx       the same, with every parameter explained, production defaults
-benchmark/   CRIS_Benchmark_Run_vNN.ipynb         the 32 A&E questions exactly as CRISpy renders them
-             CRIS_Benchmark_Results_vNN.xlsx      expected vs obtained, one tab per case
-             CRIS_UI_Test_Log_25Sep.xlsx          the same 32 questions typed into the CRIS UI
-crispy/      the planner: routes a question, fills the parameters, renders the SQL
-             crispy/app/sql/qNN_*.sql             the production copies of the 22 queries
-docs/        routing logic, handover, business rules per question, change log, this README's figures
+README.md                                       this file
+docs/figures/                                   the figures below, with their Mermaid / SVG sources
+v77/                                            current release
+  CRIS_Tables_v77.ipynb                         builds the six prepared tables, in order, with checks
+  CRIS_Tasks_v77.ipynb                          the nightly refresh: six chained tasks, build-and-swap, log
+  CRIS_Section1_Queries_v77.ipynb               the 22 queries, one cell each, set to an A&E case
+  CRIS_Section2_Queries_v77.ipynb
+  CRIS_Section3_Queries_v77.ipynb
+  CRIS_Section1_Queries_v77.docx                the same, every parameter explained, production defaults
+  CRIS_Section2_Queries_v77.docx
+  CRIS_Section3_Queries_v77.docx
+  CRIS_Queries_To_Load_For_Hassan_v77.docx      only the SQL files CRIS has to load, and why
+  CRIS_2_11_QH_Norm_vs_Jill.xlsx                the quarter-hour norm against A&E's sheet, row by row
+  CRIS_How_It_Works_v77.docx                    the whole logic in plain language, no SQL, 27 figures
+  crispy_v77.zip                                the planner, with the production SQL under app/sql
+v76/, v75/, v74/, v70/                          previous releases, same layout; v70 also holds the
+                                                benchmark run, the handover and the routing-logic document
 ```
 
-The SQL files under `crispy/app/sql` are the production copies and carry **neutral defaults**. The A&E benchmark cases live only in the notebooks and Word documents, applied when those are generated. Nothing from a validation case ever leaks into a production default.
+The SQL files inside `crispy_vNN.zip` (`app/sql/qNN_*.sql`) are the production copies and carry **neutral defaults**. The A&E benchmark cases live only in the notebooks and Word documents, applied when those are generated. Nothing from a validation case ever leaks into a production default.
 
 ---
 
@@ -88,7 +99,7 @@ What is baked in, because A&E confirmed it or because every query would otherwis
 
 `CRIS_LATEST_DATE` carries `LATEST_BROADCAST_DATE`, `LATEST_QH_BROADCAST_DATE` (quarter hours arrive later), `LATEST_FULL_SUNDAY` and `REFRESHED_AT`. It exists so that no query does a `MAX` over a fact table, and so the UI can show when the data was loaded.
 
-Rebuild only after Nielsen's loads have finished. The table schema is never changed without agreement first.
+Since v76 the tables rebuild on their own every night (§12). The table schema is never changed without agreement first.
 
 ---
 
@@ -149,8 +160,8 @@ Twenty-two, by PRD section. Each opens with a `SET` block: every parameter is ov
 | 2.7 | Live+SD → Live+3 lift vs the premiere norm | SP_IND_6 |
 | 2.8 | rank among the network's premieres | SP_4: 81 movies, Double Double Trouble #1 |
 | 2.9 | the network's rank in the series' time period | SP_IND_9: matches Jill after the 15-minute slot rule |
-| 2.10 | the premiere vs its lead-in, night by night | SP_IND_8 |
-| 2.11 | quarter hours, per telecast or rolled up by season | SP_IND_10 |
+| 2.10 | each premiere telecast vs the one telecast right before it; season rollup by lead-in programme and airing | SP_IND_9: Skinwalker 324 vs 137; Modern Marvels: WWII 3 lead-ins (Jill, 28 Sep) |
+| 2.11 | quarter hours, per telecast or rolled up by season, series movement vs norm movement | SP_IND_10: norm 234 / 239 / 244 / 228 on 191 / 191 / 213 / 190, Jill's sheet exact |
 | 2.12 | telecast level, with the season premiere marked | |
 | 2.13 | the series' repeats vs the daypart they air in | SP_IND_12: 128 (repeats-only norm) |
 
@@ -163,7 +174,7 @@ Twenty-two, by PRD section. Each opens with a `SET` block: every parameter is ov
 | 3.3 | series ranked within a genre | R_1: Greatest Mysteries #16 of 37 |
 | 3.4 | telecasts ranked across the universe, last full week | R_4 |
 
-Parameters that were added from A&E's feedback and that the planner sets from the wording: `p_premiere_only` (2.1, 2.2, 2.12), `p_rollup` (2.10, 2.11), `p_norm_basis` (2.11: TIME_PERIOD / SEASON; 2.13: REPEATS / ALL), `p_slot_min_min = 15` (2.9, 3.1), `p_min_leadin_min = 15` and `p_adjacent_min = 5` (2.10), `p_min_tcasts` (2.8, 3.3, no default floor).
+Parameters that were added from A&E's feedback and that the planner sets from the wording: `p_premiere_only` (2.1, 2.2, 2.12), `p_rollup` (2.10, 2.11), `p_norm_basis` (2.11: SLOT / SHAPE / SEASON; 2.13: REPEATS / ALL), `p_leadin_grain` (2.10: TELECAST / BLOCK), `p_slot_min_min = 15` (2.9, 3.1), `p_min_leadin_min = 15` and `p_adjacent_min = 5` (2.10), `p_min_tcasts` (2.8, 3.3, no default floor).
 
 **Output format** follows A&E's revised sheet: audience figures end in `_000`, the dates a figure covers are `FROM_DATE` and `TO_DATE`, norm dates are `NORM_FROM` and `NORM_TO`, `DEMO_USED` says which demo the query measured, rankers carry `IS_TARGET`, and 2.1 / 2.2 / 2.5 / 2.6 return their columns in the order Jill specified.
 
@@ -188,7 +199,7 @@ The four norms the queries build, and what goes into each:
 
 ## 8. Worked example: the lead-in
 
-2.10 is the query that most depends on the tables keeping repeats and shorts as columns rather than filtering them.
+2.10 is the query that most depends on the tables keeping repeats and shorts as columns rather than filtering them. Since v75 the unit is each premiere telecast, and its lead-in is the one telecast that ends within five minutes before it, whatever programme or airing, including a first run of the same series when two premieres air back to back (`p_leadin_grain = 'TELECAST'`; `'BLOCK'` keeps the earlier night-block rule).
 
 ![Lead-in](docs/figures/11_leadin.png)
 
@@ -232,14 +243,35 @@ Run the benchmark after any change to a query, a default, a prompt or a table. R
 5. Hand over: the repo, plus a document listing only the SQL files CRIS has to load. CRIS keeps **one copy per query**; two copies of the same query is how a stale result gets into the UI.
 6. Rerun the UI test log.
 
-A table change is the exception: agreed first, rebuilt after Nielsen's loads finish, uniqueness checks run afterwards.
+A table change is the exception: agreed first, then the tables notebook is edited, the tasks notebook regenerated from it and re-run (§12), and the uniqueness checks run afterwards.
 
 ---
 
-## 12. What changed lately
+## 12. The nightly refresh
+
+Since v76 the six tables rebuild themselves. Six Snowflake tasks in `AUDIENCE_DEV_DB.CRIS`, one per table, chained in build order; only the root has a schedule, the others run `AFTER` their predecessor.
+
+![Refresh chain](docs/figures/12_refresh_chain.png)
+
+The root fires every two hours through the night (21:00 to 07:00 America/New_York) and rebuilds only when the UBD view carries a newer `BROADCAST_DATE` than `CRIS_TELECAST_FACT`; otherwise it logs `SKIPPED` and the children do not run. Whichever firing comes after A&E's load picks it up, before the team sits down at 9:00.
+
+![Refresh gate](docs/figures/13_refresh_gate.png)
+
+Each task builds `<table>_NEW`, swaps it in with `ALTER TABLE … SWAP WITH` and drops the old copy, so the live table is never empty while it rebuilds.
+
+![Build and swap](docs/figures/14_refresh_swap.png)
+
+Every run writes to `CRIS_REFRESH_LOG`: one `SKIPPED` row when there is nothing new, one `REBUILT` row per table with its row count and latest `BROADCAST_DATE` otherwise. `CRIS_LATEST_DATE.REFRESHED_AT` moves with every rebuild. `v77/CRIS_Tasks_v77.ipynb` creates the tasks; `v76/CRIS_Tables_Scheduled_Refresh_v76.docx` explains how to watch, pause, reschedule or replace them.
+
+---
+
+## 13. What changed lately
 
 | version | change |
 |---|---|
+| **v77** | 2.11 builds its quarter-hour norm per clock quarter hour (`p_norm_basis = SLOT`), without the runover rule on the norm side; reproduces Jill's "QH - New" sheet exactly (191 / 191 / 213 / 190 telecasts, 234 / 239 / 244 / 228, 92 programme rows with no difference). `SHAPE` keeps the v75 norm. Pending Tommy's confirmation. |
+| **v76** | Scheduled refresh: `CRIS_Tasks` rebuilds the six tables every night (T1→T6, build-and-swap, freshness gate, `CRIS_REFRESH_LOG`). No query change. |
+| **v75** | 2.10 measures each premiere telecast against the one telecast before it (`p_leadin_grain`), rollup by lead-in programme and airing; Modern Marvels: WWII returns 3 lead-ins as Jill counted them. 2.11's norm takes the premiere-norm exclusions; movement columns renamed `FINAL_VS_QH1_PCT` / `FINAL_VS_QH1_NORM_PCT`. |
 | **v74** | 2.13 takes `p_norm_basis`, default `REPEATS`: the daypart average on repeat half hours only reproduces Jill's 128 for HIST M-SU 8P-12A (all programming gives 164). Output adds `DAYPART_NORM_BASIS`. |
 | **v73** | Every query caps its window end at the latest full Sunday with data (`[CAP-SUN]`); Section 1 caps the target night at the latest night loaded; 3.2–3.4 read that Sunday from `CRIS_LATEST_DATE` instead of scanning the fact table. 2.11 adds `NORM_VS_PRIOR_QH_PCT` and `NORM_LAST_VS_FIRST_PCT`. |
 | **v72** | 2.10 finds a lead-in within 5 minutes of the block start (`p_adjacent_min`); a night with none reads NO LEAD-IN. 2.5 / 2.6 report DEMO_USED = P2. 2.7 neutral network default. 2.11 window ends on the last full Sunday. |
@@ -252,10 +284,13 @@ A table change is the exception: agreed first, rebuilt after Nielsen's loads fin
 
 ---
 
-## 13. Still open
+## 14. Still open
 
-- **2.13 dayparts 8P-12A / 12A-6A**: mirror airings and the midnight straddle; the population was sent to Jill. Jill to confirm the repeats-only daypart norm.
+- **2.11 norm basis**: `SLOT` reproduces Jill's sheet; Tommy to confirm it is the norm A&E want before Hassan loads it.
+- **2.13 dayparts 8P-12A / 12A-6A**: mirror airings (the same-night re-airing of a premiere) and the midnight straddle; there is no mirror flag in Nielsen or Cable Tracks, a rule from Jill is needed before one can be built. Jill to confirm the repeats-only daypart norm.
 - **Mini-series flag** for the premiere norm exclusion: no column identifies one yet.
+- **`IS_PREMIERE_CT_SOURCE`**: what Cable Tracks' own flag is meant to say (Adarsh).
+- **Load time of the UBD views**: unknown; `CRIS_REFRESH_LOG` will show it within a week, then the refresh drops to one firing.
 
 ---
 

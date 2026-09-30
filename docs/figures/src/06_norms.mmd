@@ -19,10 +19,11 @@ flowchart LR
   subgraph QN["Quarter-hour norm  · 2.11"]
     direction TB
     q1["CRIS_QH_FACT"]
-    q2["p_norm_basis = TIME_PERIOD (default)<br/>every first run starting in the same half hour<br/>with the same number of quarter hours, position by position"]
-    q3["p_norm_basis = SEASON<br/>the series' other telecasts, leave-one-out"]
-    q1 --> q2
-    q1 --> q3
+    q2["p_norm_basis = SLOT (default)<br/>per clock quarter hour: every first-run quarter hour<br/>airing in the same 15-min slot, wherever its telecast<br/>started; latest 12 months; no specials / movies / Curse;<br/>no runover rule on the norm side"]
+    q3["Validated: Jill's sheet, 30 Sep 2026<br/>191 / 191 / 213 / 190 telecasts<br/>234 / 239 / 244 / 228"]
+    q4["SHAPE = same start half hour and length (v75)<br/>SEASON = the series' other telecasts, leave-one-out"]
+    q1 --> q2 --> q3
+    q1 --> q4
   end
   subgraph DN["Daypart norm  · 2.13"]
     direction TB
@@ -36,6 +37,6 @@ flowchart LR
   R["Every norm is duration weighted:<br/>SUM(demo × minutes) / SUM(minutes)"]
   PN ~~~ EN ~~~ QN ~~~ DN
   classDef note fill:#FFF4DC,stroke:#C79A2B,color:#1B2A3A
-  class R,e5 note
+  class R,e5,q3 note
   classDef key fill:#EAF6EE,stroke:#3E8E5A,color:#1B2A3A
   class d3,q2 key
