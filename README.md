@@ -284,14 +284,4 @@ Every run writes to `CRIS_REFRESH_LOG`: one `SKIPPED` row when there is nothing 
 
 ---
 
-## 14. Still open
-
-- **2.11 norm basis**: `SLOT` reproduces Jill's sheet; Tommy to confirm it is the norm A&E want before Hassan loads it.
-- **2.13 dayparts 8P-12A / 12A-6A**: mirror airings (the same-night re-airing of a premiere) and the midnight straddle; there is no mirror flag in Nielsen or Cable Tracks, a rule from Jill is needed before one can be built. Jill to confirm the repeats-only daypart norm.
-- **Mini-series flag** for the premiere norm exclusion: no column identifies one yet.
-- **`IS_PREMIERE_CT_SOURCE`**: what Cable Tracks' own flag is meant to say (Adarsh).
-- **Load time of the UBD views**: unknown; `CRIS_REFRESH_LOG` will show it within a week, then the refresh drops to one firing.
-
----
-
 *Figures are in `docs/figures/`; the Mermaid sources are in `docs/figures/src/` and the hand-drawn SVGs sit next to their PNGs, so any of them can be edited and re-rendered.*
